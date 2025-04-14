@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: goldenages
+    name: goldenagess
     env: java
     buildCommand: "./mvnw clean package"
     startCommand: "java -jar target/goldenage-0.0.1-SNAPSHOT.jar"
