@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Giá vàng</title>
+
+</head>
+<body>
+<div id="gold-price-container">
+    <h2>Current Gold Prices</h2>
+    <!-- Bảng hiển thị danh sách giá vàng -->
+    <table id="gold-price-table" border="1">
+        <thead>
+        <tr>
+            <th>Num</th>
+            <th>Gold Name</th>
+            <th>Gold Type</th>
+            <th>Buy Price (VND)</th>
+            <th>Sell Price (VND)</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td colspan="4">Loading...</td>
+        </tr>
+        </tbody>
+    </table>
+    <table id="currency-exchange-table" border="1">
+        <thead>
+        <tr>
+            <th>Num</th>
+            <th>CurrencyCode</th>
+            <th>CurrencyName</th>
+            <th>Buy Rate (VND)</th>
+            <th>Transfer Rate</th>
+            <th>Sell Rate (VND)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="5">Loading...</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div id="gold-history-container">
+        <h2>Gold Price History</h2>
+    </div>
+    <h1>Tỷ giá hối đoái</h1>
+    <canvas id="exchangeRateChart" width="400" height="200"></canvas>
+
+</div>
+
+<!--<div id="gold-price-chart-container">-->
+<!--    <h2>Gold Price History</h2>-->
+<!--    <canvas id="gold-price-chart" width="400" height="200"></canvas>-->
+<!--</div>-->
+
+<script src="script.js"></script>
+</body>
+
+</html>
