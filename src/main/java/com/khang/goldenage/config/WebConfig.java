@@ -10,9 +10,13 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:4000",
-                  "http://192.168.2.65:4000") // Allow  front-end URL
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
+          .allowedOrigins(
+            "http://localhost:4000",
+            "http://192.168.2.65:4000",
+            "https://goldenages.onrender.com" // thêm domain trên Render
+          )
+
+          .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*");
     }
 }
