@@ -2,7 +2,10 @@ services:
   - type: web
     name: goldenages
     env: java
-    buildCommand: "./mvnw clean package"
-    startCommand: "java -jar target/goldenage-0.0.1-SNAPSHOT.jar"
+    buildCommand: |
+      export JAVA_HOME=/opt/render/project/.java
+      chmod +x mvnw
+      ./mvnw clean package
+    startCommand: java -jar target/goldenage-0.0.1-SNAPSHOT.jar
     plan: free
-    region: singapore
+    region: Virginia (US East)
