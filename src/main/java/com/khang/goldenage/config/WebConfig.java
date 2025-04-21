@@ -12,7 +12,9 @@ public class WebConfig implements WebMvcConfigurer {
       .allowedOrigins(
         "http://localhost:4000", // Thường dùng cho development
         "http://192.168.2.65:4000", // Thường dùng cho development
-        "https://goldenages.online"  // domain fe
+        "https://goldenages.online",  // Domain frontend
+        "https://api.goldenages.online", // Subdomain API (nếu bạn dùng HTTPS)
+        "https://frontend-domain.onrender.com"
       )
       .allowedMethods("GET", "POST", "PUT", "DELETE")
       .allowedHeaders("*");
