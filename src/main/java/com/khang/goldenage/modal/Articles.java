@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -20,9 +21,12 @@ public class Articles {
     private String description;
     private String imageUrl;
     private String time;
+    private LocalDateTime dateTime;
 
     // Constructor rỗng
-    public Articles() {}
+    public Articles() {
+        this.dateTime = LocalDateTime.now();
+    }
 
     @Override
     public String toString() {
@@ -32,6 +36,7 @@ public class Articles {
                 ", description='" + description + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", time='" + time + '\'' +
+                ", dateTime='" + dateTime + '\'' +
                 '}';
     }
 }
