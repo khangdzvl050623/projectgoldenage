@@ -9,13 +9,19 @@ public class WebConfig implements WebMvcConfigurer {
   @Override
   public void addCorsMappings(CorsRegistry registry) {
     registry.addMapping("/**")
-      .allowedOriginPatterns(
-        "http://localhost:4000", //  dùng cho development
-        "http://192.168.2.65:4000", // dùng cho development
-        "https://goldenages.online"  // Domain frontend
+      .allowedOrigins(
+        "http://localhost:4000",
+        "http://192.168.2.65:4000",
+        "https://goldenages.online",
+        "http://goldenages.online",
+        "https://api.goldenages.online",
+        "https://frontend-domain.onrender.com",
+        "http://goldenages-3.onrender.com",
+        "https://goldenages-3.onrender.com"
       )
       .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
       .allowedHeaders("*")
+      .exposedHeaders("Access-Control-Allow-Origin")
       .allowCredentials(true);
   }
 }
