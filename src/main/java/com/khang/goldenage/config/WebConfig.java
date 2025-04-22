@@ -8,15 +8,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
   @Override
   public void addCorsMappings(CorsRegistry registry) {
-    registry.addMapping("/api/**")
+    registry.addMapping("/**")
       .allowedOrigins(
-        "http://localhost:4000", // Thường dùng cho development
-        "http://192.168.2.65:4000", // Thường dùng cho development
-        "https://goldenages.online",  // Domain frontend
-        "https://api.goldenages.online", // Subdomain API (nếu bạn dùng HTTPS)
-        "https://frontend-domain.onrender.com"
+        "http://localhost:4000", //  dùng cho development
+        "http://192.168.2.65:4000", // dùng cho development
+        "https://goldenages.online"  // Domain frontend
       )
-      .allowedMethods("GET", "POST", "PUT", "DELETE")
-      .allowedHeaders("*");
+      .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+      .allowedHeaders("*")
+      .allowCredentials(true);
   }
 }
