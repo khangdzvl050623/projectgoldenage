@@ -12,6 +12,6 @@ public class ArticlesService {
     @Autowired
     private ArticlesRepository articlesRepository;
     public List<Articles> getArticles() {
-        return articlesRepository.findAll();
+        return articlesRepository.findAllByOrderByDateTimeDesc();
     }
 }

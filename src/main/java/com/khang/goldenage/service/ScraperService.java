@@ -19,6 +19,29 @@ public class ScraperService {
     @Autowired
     ArticlesRepository articlesRepository;
 
+    private String normalizeImageUrl(String imageUrl) {
+        if (imageUrl == null || imageUrl.isEmpty()) {
+            return null;
+        }
+        
+        // Nếu là base64, bỏ qua và trả về null
+        if (imageUrl.startsWith("data:image")) {
+            return null;
+        }
+        
+        // Nếu là URL tương đối, thêm domain
+        if (imageUrl.startsWith("/")) {
+            return "https://vnexpress.net" + imageUrl;
+        }
+        
+        // Nếu là URL đầy đủ, giữ nguyên
+        if (imageUrl.startsWith("http")) {
+            return imageUrl;
+        }
+        
+        return null;
+    }
+
     public List<Articles> scrapeArticles(String url) {
         List<Articles> articlesList = new ArrayList<>();
         try {
@@ -37,7 +60,10 @@ public class ScraperService {
                 String link = article.select("h3.title-news a").attr("href");
                 String title = article.select("h3.title-news a").text();
                 String description = article.select("p.description").text();
-                String imageUrl = article.select("div.thumb-art img").attr("src");
+                String imageUrl = article.select("div.thumb-art img").attr("data-src");
+                if (imageUrl == null || imageUrl.isEmpty()) {
+                    imageUrl = article.select("div.thumb-art img").attr("src");
+                }
                 String timeAgo = article.select("span.time-ago").text();
                 LocalDateTime now = LocalDateTime.now();
 
