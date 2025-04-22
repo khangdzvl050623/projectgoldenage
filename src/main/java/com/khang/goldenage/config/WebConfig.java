@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
   @Override
   public void addCorsMappings(CorsRegistry registry) {
     registry.addMapping("/**")
-      .allowedOrigins(
+      .allowedOriginPatterns(
         "http://localhost:4000", //  dùng cho development
         "http://192.168.2.65:4000", // dùng cho development
         "https://goldenages.online"  // Domain frontend
