@@ -19,26 +19,26 @@ public class ScraperService {
     @Autowired
     ArticlesRepository articlesRepository;
 
-    private String normalizeImageUrl(String imageUrl) {
-        if (imageUrl == null || imageUrl.isEmpty()) {
+    private String normalizeMediaUrl(String mediaUrl) {
+        if (mediaUrl == null || mediaUrl.isEmpty()) {
             return null;
         }
-        
-        // Nếu là base64, bỏ qua và trả về null
-        if (imageUrl.startsWith("data:image")) {
+
+        // Nếu là base64, bỏ qua
+        if (mediaUrl.startsWith("data:")) {
             return null;
         }
-        
-        // Nếu là URL tương đối, thêm domain
-        if (imageUrl.startsWith("/")) {
-            return "https://vnexpress.net" + imageUrl;
+
+        // Nếu là URL đầy đủ (bao gồm cả vncdn.net và vnecdn.net)
+        if (mediaUrl.startsWith("http")) {
+            return mediaUrl;  // Trả về trực tiếp URL đầy đủ
         }
-        
-        // Nếu là URL đầy đủ, giữ nguyên
-        if (imageUrl.startsWith("http")) {
-            return imageUrl;
+
+        // Nếu là URL tương đối
+        if (mediaUrl.startsWith("/")) {
+            return "https://vnexpress.net" + mediaUrl;
         }
-        
+
         return null;
     }
 
@@ -60,10 +60,61 @@ public class ScraperService {
                 String link = article.select("h3.title-news a").attr("href");
                 String title = article.select("h3.title-news a").text();
                 String description = article.select("p.description").text();
-                String imageUrl = article.select("div.thumb-art img").attr("data-src");
-                if (imageUrl == null || imageUrl.isEmpty()) {
-                    imageUrl = article.select("div.thumb-art img").attr("src");
+                
+                // Xử lý media (video hoặc hình ảnh)
+                Element thumbArt = article.select("div.thumb-art").first();
+                String mediaUrl = "";
+                String mediaType = "image";
+                
+                System.out.println("\n=== DEBUG MEDIA ===");
+                System.out.println("Đang xử lý bài: " + title);
+                
+                if (thumbArt != null) {
+                    System.out.println("Tìm thấy thumb-art");
+                    
+                    // Kiểm tra video trước
+                    Element video = thumbArt.select("video").first();
+                    if (video != null) {
+                        System.out.println("Tìm thấy video");
+                        Element source = video.select("source").first();
+                        if (source != null) {
+                            System.out.println("Tìm thấy source");
+                            // Ưu tiên lấy data-src-video trước
+                            mediaUrl = source.attr("data-src-video");
+                            System.out.println("data-src-video: " + mediaUrl);
+                            
+                            if (mediaUrl.isEmpty()) {
+                                mediaUrl = source.attr("src");
+                                System.out.println("src: " + mediaUrl);
+                            }
+                            mediaType = "video";
+                        }
+                    } else {
+                        System.out.println("Không tìm thấy video, kiểm tra hình ảnh");
+                        // Nếu không có video, kiểm tra picture và img
+                        Element picture = thumbArt.select("picture").first();
+                        if (picture != null) {
+                            System.out.println("Tìm thấy picture");
+                            Element img = picture.select("img").first();
+                            if (img != null) {
+                                System.out.println("Tìm thấy img");
+                                mediaUrl = img.attr("data-src");
+                                System.out.println("data-src: " + mediaUrl);
+                                
+                                if (mediaUrl.isEmpty()) {
+                                    mediaUrl = img.attr("src");
+                                    System.out.println("src: " + mediaUrl);
+                                }
+                                mediaType = "image";
+                            }
+                        }
+                    }
                 }
+
+                System.out.println("Media URL trước khi normalize: " + mediaUrl);
+                String normalizedMediaUrl = normalizeMediaUrl(mediaUrl);
+                System.out.println("Media URL sau khi normalize: " + normalizedMediaUrl);
+
                 String timeAgo = article.select("span.time-ago").text();
                 LocalDateTime now = LocalDateTime.now();
 
@@ -71,7 +122,8 @@ public class ScraperService {
                 System.out.println("Tiêu đề: " + title);
                 System.out.println("Link: " + link);
                 System.out.println("Mô tả: " + description);
-                System.out.println("Hình ảnh: " + imageUrl);
+                System.out.println("Loại media: " + mediaType);
+                System.out.println("URL media: " + normalizedMediaUrl);
                 System.out.println("Thời gian đăng: " + timeAgo);
                 System.out.println("Thời gian crawl: " + now.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
 
@@ -79,7 +131,8 @@ public class ScraperService {
                 newArticle.setLink(link);
                 newArticle.setTitle(title);
                 newArticle.setDescription(description);
-                newArticle.setImageUrl(imageUrl);
+                newArticle.setMediaUrl(normalizedMediaUrl);
+                newArticle.setMediaType(mediaType);
                 newArticle.setTime(timeAgo);
                 newArticle.setDateTime(now);
 

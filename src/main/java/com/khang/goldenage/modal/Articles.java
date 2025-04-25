@@ -19,9 +19,10 @@ public class Articles {
     private String title;
     private String link;
     private String description;
-    private String imageUrl;
+    private String mediaUrl;
     private String time;
     private LocalDateTime dateTime;
+    private String mediaType;
 
     // Constructor rỗng
     public Articles() {
@@ -34,9 +35,10 @@ public class Articles {
                 "title='" + title + '\'' +
                 ", link='" + link + '\'' +
                 ", description='" + description + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
+                ", mediaUrl='" + mediaUrl + '\'' +
                 ", time='" + time + '\'' +
                 ", dateTime='" + dateTime + '\'' +
+                ", mediaType='" + mediaType + '\'' +
                 '}';
     }
 }
