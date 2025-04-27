@@ -28,7 +28,7 @@ public class GoldPriceController {
 
     @GetMapping("/current-gold-prices")
     public ResponseEntity<List<GoldPrice>> getCurrentGoldPrices() {
-        return ResponseEntity.ok(goldPriceService.getCurrentGoldPrices());
+        return ResponseEntity.ok(goldPriceService.getLatestGoldPrices());
     }
 
 

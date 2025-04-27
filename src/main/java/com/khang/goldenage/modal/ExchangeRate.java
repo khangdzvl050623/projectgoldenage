@@ -38,12 +38,5 @@ public class ExchangeRate {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedTime;
 
-    public ExchangeRate(String currencyCode, String currencyName, BigDecimal buyRate, BigDecimal transferRate, BigDecimal sellRate, Date updatedTime) {
-        this.currencyCode = currencyCode;
-        this.currencyName = currencyName;
-        this.buyRate = buyRate;
-        this.transferRate = transferRate;
-        this.sellRate = sellRate;
-        this.updatedTime = updatedTime;
-    }
+
 }

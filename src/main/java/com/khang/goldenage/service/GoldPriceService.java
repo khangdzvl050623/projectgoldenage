@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -102,7 +103,8 @@ public class GoldPriceService {
             goldPrice.setSellPrice(Integer.parseInt(sellPrice));
             goldPrice.setGoldType(typePrice);
             goldPrice.setUpdatedTime(parseDate(updatedTime));
-
+            Date now = new Date(); // Thời điểm fetch/crawl
+            goldPrice.setFetchedTime(now);
             goldPrices.add(goldPrice);
         }
 
@@ -139,6 +141,8 @@ public class GoldPriceService {
             goldPrice.setSellPrice(Integer.parseInt(sellPrice));
             goldPrice.setGoldType(typePrice);
             goldPrice.setUpdatedTime(parseDate(updatedTime));
+            Date now = new Date(); // Thời điểm fetch/crawl
+            goldPrice.setFetchedTime(now);
 
             goldPrices.add(goldPrice);
         }
@@ -193,7 +197,19 @@ public class GoldPriceService {
         return content;
     }
 
-    public List<GoldPrice> getCurrentGoldPrices() {
-        return goldPriceRepository.findGoldPricesByLatestDate();
+    // public List<GoldPrice> getCurrentGoldPrices() {
+    //     return goldPriceRepository.findGoldPricesByLatestDate();
+    // }
+
+
+    public List<GoldPrice> getLatestGoldPrices() {
+        // Lấy thời gian fetch mới nhất từ repository
+        Date latestFetchedTime = goldPriceRepository.findMaxFetchedTime();
+        if (latestFetchedTime == null) {
+            // Nếu chưa có dữ liệu nào thì trả về list rỗng
+            return new ArrayList<>();
+        }
+        // Lấy toàn bộ giá vàng của lần fetch mới nhất
+        return goldPriceRepository.findByFetchedTime(latestFetchedTime);
     }
 }

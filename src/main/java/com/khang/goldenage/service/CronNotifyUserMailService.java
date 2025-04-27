@@ -28,7 +28,7 @@ public class CronNotifyUserMailService {
     @Scheduled(cron = "0 0 8 * * ?") // Chạy mỗi ngày lúc 8 giờ sáng
     public void sendDailyGoldPriceNotifications() {
         List<User> users = userRepository.findAll();
-        List<GoldPrice> goldPrices = goldPriceService.getCurrentGoldPrices();
+        List<GoldPrice> goldPrices = goldPriceService.getLatestGoldPrices();
 
         if (goldPrices.isEmpty()) {
             System.out.println("Không có giá vàng để gửi thông báo hôm nay.");

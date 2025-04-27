@@ -2,11 +2,13 @@ package com.khang.goldenage.service;
 
 import com.khang.goldenage.modal.ExchangeRate;
 import com.khang.goldenage.modal.GoldPrice;
+import com.khang.goldenage.repository.GoldPriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,15 +17,20 @@ public class CronGetGoldAndExchangeRateService {
     private GoldPriceService goldPriceService;
     @Autowired
     private ExchangeRateService exchangeRateService;
+    @Autowired
+    private GoldPriceRepository goldPriceRepository;
 
         @Scheduled(fixedDelay = 3600000)
     public void fetchGoldPrice() throws IOException {
         String url = "http://api.btmc.vn/api/BTMCAPI/getpricebtmc?key=3kd8ub1llcg9t45hnoh8hmn7t5kc2v";
         try{
+            Date latestFetch = goldPriceRepository.findMaxFetchedTime();
             List<GoldPrice> goldPrices =goldPriceService.parsePriceFromUrl(url);
 
             // display ra
             goldPrices.forEach(goldPrice -> System.out.println(goldPrice));
+
+            List<GoldPrice> latestGolds = goldPriceRepository.findByFetchedTime(latestFetch);
 
         }
         catch (Exception e){
