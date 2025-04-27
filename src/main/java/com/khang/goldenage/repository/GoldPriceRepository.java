@@ -12,8 +12,8 @@ import java.util.List;
 public interface GoldPriceRepository extends JpaRepository<GoldPrice, Long> {
 
 
-    @Query("SELECT g FROM GoldPrice g WHERE g.updatedTime = (SELECT MAX(g.updatedTime) FROM GoldPrice g)")
-    List<GoldPrice> findGoldPricesByLatestDate();
+    // @Query("SELECT g FROM GoldPrice g WHERE g.updatedTime = (SELECT MAX(g.updatedTime) FROM GoldPrice g)")
+    // List<GoldPrice> findGoldPricesByLatestDate();
 
     @Query("SELECT MAX(g.fetchedTime) FROM GoldPrice g")
     Date findMaxFetchedTime();
