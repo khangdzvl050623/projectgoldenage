@@ -18,7 +18,7 @@ public interface GoldPriceRepository extends JpaRepository<GoldPrice, Long> {
     SELECT *
     FROM (
         SELECT *, ROW_NUMBER() OVER (PARTITION BY gold_type ORDER BY updated_time DESC) as rn
-        FROM gold_price
+        FROM goldprice
     ) sub
     WHERE rn = 1
     """, nativeQuery = true)
