@@ -199,7 +199,7 @@ public class GoldPriceService {
 
 
   public List<GoldPrice> getLatestGoldPrices() {
-    List<GoldPrice> latestGoldPrices = goldPriceRepository.findLatestGoldPricesByUpdatedTime();
+    List<GoldPrice> latestGoldPrices = goldPriceRepository.findLatestGoldPricesByGoldType();
     latestGoldPrices.forEach(price -> System.out.println(
       "[DEBUG] GoldType: " + price.getGoldType() +
         ", Buy: " + price.getPurchasePrice() +
