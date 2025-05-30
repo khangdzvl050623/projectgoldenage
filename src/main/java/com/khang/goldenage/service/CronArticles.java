@@ -15,7 +15,7 @@ public class CronArticles {
     @Autowired
     private ScraperService scraperService;
 
-    @Scheduled(fixedDelay = 3600000) // Chạy mỗi giờ
+    @Scheduled(fixedDelay = 86400000) // Chạy mỗi giờ
     public void fetchArticles() {
         String url = "https://vnexpress.net/tin-tuc-24h"; // URL cần lấy bài viết
         System.out.println("Bắt đầu cron lấy bài viết...");

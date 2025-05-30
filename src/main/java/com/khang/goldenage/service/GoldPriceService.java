@@ -171,16 +171,16 @@ public class GoldPriceService {
   }
 
   // Chuyển đổi chuỗi ngày thành đối tượng java.sql.Date
-  private java.sql.Date parseDate(String dateStr) {
+  private java.util.Date parseDate(String dateStr) {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     try {
-      java.util.Date utilDate = dateFormat.parse(dateStr);
-      return new java.sql.Date(utilDate.getTime());
+      return dateFormat.parse(dateStr); // ✅ Trả về full date + time
     } catch (ParseException e) {
       e.printStackTrace();
       return null;
     }
   }
+
 
   // Lấy tất cả giá vàng từ cơ sở dữ liệu
   public List<GoldPrice> getGoldPrices() {

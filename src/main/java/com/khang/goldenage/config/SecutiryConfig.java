@@ -42,7 +42,8 @@ public class SecutiryConfig {
         .requestMatchers(HttpMethod.GET,"/api/ test-send-email").permitAll()
         .requestMatchers(HttpMethod.GET,"/api/exchange-rate/current-exchange-rate").permitAll()
         .requestMatchers(HttpMethod.GET,"/api/gold-prices/current-gold-prices").permitAll()
-        .requestMatchers(HttpMethod.GET,"/scrape/history").permitAll()
+        .requestMatchers(HttpMethod.GET,"/api/gold-prices/history").permitAll()
+        .requestMatchers(HttpMethod.GET,"/api/scrape/history").permitAll()
         .anyRequest().authenticated()
 
       )

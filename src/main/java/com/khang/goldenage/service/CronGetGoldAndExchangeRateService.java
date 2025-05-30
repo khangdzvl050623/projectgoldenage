@@ -19,7 +19,7 @@ public class CronGetGoldAndExchangeRateService {
   private ExchangeRateService exchangeRateService;
 
 
-  @Scheduled(fixedDelay = 3600000)
+  @Scheduled(fixedDelay = 86400000)
   public void fetchGoldPrice() throws IOException {
     String url = "http://api.btmc.vn/api/BTMCAPI/getpricebtmc?key=3kd8ub1llcg9t45hnoh8hmn7t5kc2v";
     try {
@@ -35,7 +35,7 @@ public class CronGetGoldAndExchangeRateService {
     }
   }
 
-  @Scheduled(fixedDelay = 3600000)
+  @Scheduled(fixedDelay = 86400000)
   public void fetchExchangeRate() {
     String url = "https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=8";
     try {

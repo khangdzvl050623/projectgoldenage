@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/scrape")
+@RequestMapping("/api/scrape")
 public class ArticlesController {
     @Autowired
     private ArticlesService articlesService;
