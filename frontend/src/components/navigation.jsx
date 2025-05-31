@@ -30,6 +30,9 @@ export const Navigation = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/goldprice">Gold Price</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/news">Tin tức mới nhất</Link>
+            </li>
             {/* Phần login/user info */}
             {user ? (
               <>

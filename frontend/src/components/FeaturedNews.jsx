@@ -1,10 +1,10 @@
 export default function FeaturedNews({ article }) {
   if (!article) return null;
   return (
-    <div>
+    <div className="featured-news-item">
       {article.mediaType === 'video' ? (
         <video
-          style={{width: '100%', maxHeight: 250, objectFit: 'cover', borderRadius: 12}}
+          style={{width: '100%'}}
           controls
         >
           <source src={article.mediaUrl} type="video/mp4" />
@@ -14,7 +14,7 @@ export default function FeaturedNews({ article }) {
         <img
           src={article.mediaUrl}
           alt={article.title}
-          style={{width: '100%', maxHeight: 250, objectFit: 'cover', borderRadius: 12}}
+          style={{width: '100%'}}
         />
       )}
       <h3 style={{marginTop: 12}}>{article.title}</h3>

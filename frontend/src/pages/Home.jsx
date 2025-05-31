@@ -4,7 +4,6 @@ import NewsCard from '../components/NewsCard';
 import GoldPriceChart from '../components/GoldPriceChart';
 import GoldPriceTable from '../tables/GoldPriceTable';
 import ExchangeRateTable from '../tables/ExchangeRateTable';
-import { Contact } from "../components/contact";
 import '../styles/Dashboard.css';
 import useArticles from '../hooks/useArticles';
 

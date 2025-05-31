@@ -1,18 +1,31 @@
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  gap: 28px;
   margin-top: 32px;
 }
 
 .custom-card {
-  border-radius: 16px;
+  border-radius: 18px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   background: #fff;
-  padding: 16px;
+  padding: 24px 20px 20px 20px;
   margin-bottom: 0;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.25s, transform 0.18s;
+  border: 1px solid #f2f2f2;
 }
 .custom-card:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  transform: translateY(-4px) scale(1.01);
+}
+
+.dashboard-grid h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.dashboard-grid p {
+  color: #555;
+  font-size: 0.98rem;
 } 

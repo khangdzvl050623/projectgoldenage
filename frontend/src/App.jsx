@@ -59,6 +59,7 @@ export default function App() {
           }/>
           <Route path="/login" element={<LoginPage setUser={setUser}/>}/>
           <Route path="/register" element={<RegisterPage setUser={setUser}/>}/>
+          <Route path="/news" element={<NewsPage contactData={landingPageData.Contact}/>} />
           <Route path="*" element={<h1>404 - Page Not Found</h1>}/>
         </Routes>
       </div>
