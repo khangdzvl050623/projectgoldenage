@@ -1,0 +1,104 @@
+{
+  "Header": {
+    "title": "Golden Age Jewelry",
+    "paragraph": "Discover our exquisite collection of fine jewelry, where timeless elegance meets modern design."
+  },
+  "About": {
+    "paragraph": "At Golden Age Jewelry, we believe in creating pieces that tell your unique story. Each piece is crafted with precision and care, using only the finest materials.",
+    "Why": [
+      "Premium Quality",
+      "Custom Designs",
+      "Lifetime Warranty",
+      "Expert Craftsmanship"
+    ],
+    "Why2": [
+      "Ethical Sourcing",
+      "Personal Service",
+      "Free Shipping",
+      "Easy Returns"
+    ]
+  },
+  "Gallery": [
+    {
+      "title": "Gold Necklace",
+      "largeImage": "/img/portfolio/necklace-large.jpg",
+      "smallImage": "/img/portfolio/necklace-small.jpg"
+    },
+    {
+      "title": "Diamond Ring",
+      "largeImage": "/img/portfolio/ring-large.jpg",
+      "smallImage": "/img/portfolio/ring-small.jpg"
+    },
+    {
+      "title": "Gold Bracelet",
+      "largeImage": "/img/portfolio/bracelet-large.jpg",
+      "smallImage": "/img/portfolio/bracelet-small.jpg"
+    }
+  ],
+  "Services": [
+    {
+      "icon": "fa fa-diamond",
+      "name": "Custom Design",
+      "text": "Create your perfect piece with our expert designers."
+    },
+    {
+      "icon": "fa fa-magic",
+      "name": "Jewelry Repair",
+      "text": "Professional repair and restoration services."
+    },
+    {
+      "icon": "fa fa-heart",
+      "name": "Wedding Collection",
+      "text": "Special pieces for your special day."
+    }
+  ],
+  "Testimonials": [
+    {
+      "img": "/img/testimonials/01.jpg",
+      "text": "The quality and craftsmanship of my custom ring exceeded all expectations.",
+      "name": "Sarah Johnson"
+    },
+    {
+      "img": "/img/testimonials/02.jpg",
+      "text": "Exceptional service and stunning pieces. Will definitely return!",
+      "name": "Michael Chen"
+    }
+  ],
+  "Team": [
+    {
+      "img": "/img/team/01.jpg",
+      "name": "Emma Davis",
+      "job": "Lead Designer"
+    },
+    {
+      "img": "/img/team/02.jpg",
+      "name": "James Wilson",
+      "job": "Master Craftsman"
+    }
+  ],
+  "Contact": {
+    "address": "123 Jewelry Lane, Golden City, GC 12345",
+    "phone": "+1 234 567 8900",
+    "email": "info@goldenagejewelry.com",
+    "facebook": "fb.com/goldenagejewelry",
+    "instagram": "instagram.com/goldenagejewelry",
+    "pinterest": "pinterest.com/goldenagejewelry"
+  },
+  "Features": [
+    {
+      "icon": "fa fa-star",
+      "title": "Premium Quality",
+      "text": "Only the finest materials and craftsmanship."
+    },
+    {
+      "icon": "fa fa-heart",
+      "title": "Custom Design",
+      "text": "Create your perfect piece with our expert designers."
+    },
+    {
+      "icon": "fa fa-shield",
+      "title": "Lifetime Warranty",
+      "text": "We stand behind our quality with lifetime warranty."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.custom-card {
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  background: #fff;
+  padding: 16px;
+  margin-bottom: 0;
+  transition: box-shadow 0.2s;
+}
+.custom-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+} 
