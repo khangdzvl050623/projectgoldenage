@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from '../components/Cart';
 import FeaturedNews from '../components/FeaturedNews';
 import NewsCard from '../components/NewsCard';
@@ -8,7 +8,17 @@ import '../styles/NewsPage.css';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useState, useEffect } from "react";
+
+
+const getCategoryFromImageUrl = (url) => {
+  if (!url) return 'Khác';
+  if (url.includes("dulich")) return "Du lịch";
+  if (url.includes("giaitri")) return "Giải trí";
+  if (url.includes("suckhoe")) return "Sức khỏe";
+  if (url.includes("thethao")) return "Thể thao";
+  if (url.includes("vnexpress")) return "Thời sự";
+  return "Khác";
+};
 
 const publishers = [
   { name: 'VnExpress', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/VnExpress.net_logo.png' },
@@ -23,30 +33,26 @@ const NewsPage = () => {
   const { articles, loading, error } = useArticles();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const articlesPerPage = 10; // Number of articles per page
-  const maxPages = 3; // Maximum number of pages to display
-  const maxArticlesForPagination = articlesPerPage * maxPages; // Maximum articles for the limited pagination
+  const articlesPerPage = 10;
+  const maxPages = 3;
+  const maxArticlesForPagination = articlesPerPage * maxPages;
 
-  // Calculate articles for the current page (using only the first maxArticlesForPagination)
   const articlesToPaginate = articles.slice(0, maxArticlesForPagination);
   const indexOfLastArticle = currentPage * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
   const currentArticles = articlesToPaginate.slice(indexOfFirstArticle, indexOfLastArticle);
-
-  // Calculate total pages (fixed to maxPages)
-  const totalPages = maxPages; // Fixed to 3 pages
+  const totalPages = maxPages;
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     const newsListElement = document.querySelector('.news-list');
     if (newsListElement) {
-        newsListElement.scrollIntoView({ behavior: 'smooth' });
+      newsListElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const renderPaginationButtons = () => {
     const pageNumbers = [];
-    // Loop only up to totalPages (which is now fixed at 3)
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(i);
     }
@@ -72,8 +78,7 @@ const NewsPage = () => {
   return (
     <div className="news-layout">
       <aside className="news-sidebar">
-        <div className="sidebar-logo">
-        </div>
+        <div className="sidebar-logo"></div>
         <h2 className="sidebar-title">Tin tức</h2>
         <div className="sidebar-publishers">
           <div className="sidebar-follow-title">Các nhà phát hành đã theo dõi</div>
@@ -86,6 +91,7 @@ const NewsPage = () => {
           </ul>
         </div>
       </aside>
+
       <main className="news-main">
         <section className="top-stories">
           <h3>Top Stories</h3>
@@ -99,20 +105,25 @@ const NewsPage = () => {
               arrows={true}
             >
               {articles.slice(0, 3).map((article, idx) => (
-                <div key={article.id || idx} style={{padding: 8}}>
+                <div key={article.id || idx} style={{ padding: 8 }}>
                   <FeaturedNews article={article} />
                 </div>
               ))}
             </Slider>
           </div>
         </section>
+
         <section className="news-list">
           {currentArticles.map((article, idx) => (
-            <Card key={article.id || idx} style={{marginBottom: 24}}>
-              <NewsCard article={article} />
+            <Card key={article.id || idx} style={{ marginBottom: 24 }}>
+              <NewsCard
+                article={article}
+                category={getCategoryFromImageUrl(article.mediaUrl || article.link || "")}
+              />
             </Card>
           ))}
         </section>
+
         {totalPages > 1 && renderPaginationButtons()}
       </main>
     </div>
